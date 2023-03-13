@@ -1,0 +1,115 @@
+@media(min-width: 1199px){
+
+}
+@media(min-width: 992px) and (max-width: 1199px){
+
+}
+@media(max-width: 1199px){
+.select_arrow{width: 40px;height: 35px;top: 10px;right: 0;background:#E41024;}
+.deactivatebx a{padding: 15px 10px;}
+.bckimg_bx{padding: 23px;}
+.bck_txtbx h4{font-size: 18px; line-height: 22px;}
+.bck_txtbx p{font-size: 18px;}
+.breder_shbord .bck_txtbx{padding: 0 8px;}
+.breder_shbord .bck_txtbx h4{line-height: 20px; font-size: 18px;}
+}
+@media(max-width: 1024px){
+	.viewborder .liset .head_top_u li{vertical-align: middle;width: 19%;}
+    .viewborder .trfgb li.inner_data.frdtgh ul li{width: 19%;}
+    .lg_form_bx{padding: 30px 30px;}
+}
+@media (max-width: 991px) and (min-width: 768px){
+
+}
+@media(max-width: 991px){
+    .bckadmn_bx{margin-bottom: 15px;}
+
+.dshboard_data_sec .view_salebx a {
+    padding: 5px 10px !important;
+    font-size: 12px;
+    line-height: 15px;
+}
+.deactivatebx a {
+    padding: 12px 10px;
+    font-size: 12px;
+}
+li.inner_data ul li{
+    font-size: 13px;
+}
+.viewborder .view_salebx a{padding: 15px !important;}
+.viewborder .view_salebx{justify-content: left;}
+.head_top_u ul li{font-size: 12px;}
+.breder_viewbtn{font-size: 12px;}
+.viewborder .head_top_u ul{padding-left: 15px;}
+.viewborder .inner_data ul{padding-left: 15px;}
+.head_top_u ul{padding-left: 10px;}
+.dt_screenpg .trfgb li.inner_data.frdtgh ul{padding-left: 15px;}
+
+
+}
+@media(max-width: 767px){
+.head_logo{max-width: 30%;}
+.admin_bx{    right: 80px;
+    position: absolute;
+    max-width: 15%;
+    top: 8px;
+}
+.Breeder_hdtxt p{font-size: 14px;line-height: 20px;}
+
+.welcombx{max-width: 35%;}
+.admnbx{max-width: 20%;}
+.header_mainbx .row{position: relative;}
+.serach_bx{padding:15px 15px;}
+.bck_txtbx h4{font-size: 18px;}
+.trfgb li.inner_data.frdtgh ul li{width: 18%;}
+.liset.trfgb ul ul li{width: 17.66%;vertical-align: middle;}
+.addbreeder_form label{font-size: 14px;margin-bottom: 3px;}
+.viewbreeder_form label{font-size: 14px;margin-bottom: 3px;}
+.form-control{font-size: 14px;}
+.addbr_form_bx{margin-bottom: 0;}
+.view_Breeder_sec{padding: 15px 0;}
+.breeder_savefrm{padding-bottom: 20px !important;}
+
+.viewborder .liset .head_top_u li{width: 32%;}
+.viewborder .trfgb li.inner_data.frdtgh ul li{width: 32%;}
+.breeder_dshboard_data_sec .head_top_u ul li {
+    width: 21% !important;
+    font-size: 11px;
+}
+.breeder_dshboard_data_sec .breder_viewbtn{font-size: 11px;}
+.breeder_dshboard_data_sec .htnkh li.inner_data.frdtgh ul{padding-left: 15px;}
+.breeder_dshboard_data_sec .htnkh li.inner_data.frdtgh ul li{width: 21% !important;}
+.dt_screenpg .head_top_u ul li {
+    width: 30% !important;
+    font-size: 11px;
+}
+
+}
+@media(max-width: 575px){
+.inner_data ul{padding-left: 10px;}
+.head_top_u ul{padding-left: 10px;}
+.addbr_form_bx{padding: 10px 15px;}
+}
+@media(max-width: 475px){
+    .liset.trfgb ul ul li{width: 22.66%;}  
+    .trfgb li.inner_data.frdtgh ul li{width: 23% !important;}
+    .view_salebx{justify-content:left;}
+    .trfgb li.inner_data.frdtgh ul li.sale_vie_list{width: 40% !important;}
+    .trfgb li.inner_data.frdtgh ul li.deactivate_list{width: 30% !important;}
+    .viewborder .trfgb li.inner_data.frdtgh ul li{width: 32% !important;}
+    .viewborder .head_top_u ul{padding-left: 5px;}
+    .viewborder .inner_data ul{padding-left: 5px;}
+    .breeder_btn a{font-size: 14px;padding: 10px 10px;}
+    
+}
+@media(max-width: 420px){
+    .viewborder .liset .head_top_u li{width: 40% !important;}
+    .viewborder .trfgb li.inner_data.frdtgh ul li{width: 32% !important;} 
+    .breeder_dshboard_data_sec .head_top_u ul li{width: 32% !important;}
+    .breeder_btn a{font-size: 12px;padding: 7px;}
+}
+@media(max-width: 360px){
+    .trfgb li.inner_data.frdtgh ul li.sale_vie_list{width: 50% !important;}
+    .trfgb li.inner_data.frdtgh ul li.deactivate_list{width: 45% !important;}
+    .viewborder .view_salebx a{padding: 10px !important;}
+}
