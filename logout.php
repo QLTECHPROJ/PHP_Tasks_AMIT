@@ -3,6 +3,6 @@
     
     if(session_destroy()) {
         
-        header("Location: login2.php");
+        header("Location: index.php");
     }
 ?>
