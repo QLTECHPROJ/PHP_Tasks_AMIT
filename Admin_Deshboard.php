@@ -37,6 +37,24 @@
 </head>
 
 <body>
+<?php
+$user = 'root';
+$password = '';
+$database = 'loginsystem';
+$servername='localhost:3306';
+$mysqli = new mysqli($servername, $user,
+				$password, $database);
+
+if ($mysqli->connect_error) {
+	die('Connect Error (' .
+	$mysqli->connect_errno . ') '.
+	$mysqli->connect_error);
+}
+$sql = " SELECT * FROM userdata";
+$result = $mysqli->query($sql);
+
+$mysqli->close();
+?>
 
     <div class="site-main">
 
@@ -57,7 +75,7 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class=" col-lg-2 col-md-2 col-sm-12 head_logo">
-                            <a href="Admin_Deshboard.html">
+                            <a href="Admin_Deshboard.php">
                                 <img src="image/head_logo.png" alt="logo" class="img-fluid">
                             </a>
                         </div>
@@ -112,7 +130,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-12">
-                        <a href="Breeder.html">
+                        <a href="Breeder.php">
                             <div class="bckadmn_bx">
                                 <div class="bckcnt">
                                     <div class="bckimg_bx">
@@ -189,16 +207,23 @@
                                         </ul>
                                     </li>
                                     <ul class="htnkh">
+                                        <?php
+                                            // LOOP TILL END OF DATA
+                                            while($rows=$result->fetch_assoc())
+                                            {
+                                        ?>
                                         <li class="inner_data frdtgh">
+                                            <!-- FETCHING DATA FROM EACH
+                                                ROW OF EVERY COLUMN -->
                                             <ul>
-                                                <li>Aaron Ipsum</li>
-                                                <li>#B001</li>
-                                                <li>$2500</li>
-                                                <li>25 Sold</li>
-                                                <li class="sale_vie_list">
+                                            <li><?php echo $rows['Breedername'];?></li>
+                                            <li><?php echo $rows['BreederCode'];?></li>
+                                            <li><?php echo $rows['totalearning'];?></li>
+                                            <li><?php echo $rows['totalsales'];?></li>
+                                            <li class="sale_vie_list">
                                                     <div class="view_salebx">
-                                                        <a href="View_breeder_pro_info.html">View Profile</a>
-                                                        <a href="View_breeder.html">View Sales</a>
+                                                        <a href="View_breeder_pro_info.php">View Profile</a>
+                                                        <a href="View_breeder.php">View Sales</a>
                                                     </div>
                                                 </li>
                                                 <li class="deactivate_list">
@@ -207,71 +232,12 @@
                                                     </div>
                                                 </li>
                                             </ul>
-                                        </li>
-                                        <li class="inner_data frdtgh">
-                                            <ul>
-                                                <li>Alexei</li>
-                                                <li>#B002</li>
-                                                <li>$2500</li>
-                                                <li>25 Sold</li>
-                                                <li class="sale_vie_list">
-                                                    <div class="view_salebx">
-                                                        <a href="View_breeder_pro_info.html">View Profile</a>
-                                                        <a href="View_breeder.html">View Sales</a>
-                                                    </div>
-                                                </li>
-                                                <li class="deactivate_list">
-                                                    <div class="deactivatebx">
-                                                        <a href="#" data-toggle="modal" data-target="#exampleModalCenter">Deactivate</a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="inner_data frdtgh">
-                                            <ul>
-                                                <li>Diarmuid</li>
-                                                <li>#B0030</li>
-                                                <li>$2500</li>
-                                                <li>25 Sold</li>
-                                                <li class="sale_vie_list">
-                                                    <div class="view_salebx">
-                                                        <a href="View_breeder_pro_info.html">View Profile</a>
-                                                        <a href="View_breeder.html">View Sales</a>
-                                                    </div>
-                                                </li>
-                                                <li class="deactivate_list">
-                                                    <div class="deactivatebx">
-                                                        <a href="#" data-toggle="modal" data-target="#exampleModalCenter">Deactivate</a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="inner_data frdtgh">
-                                            <ul>
-                                                <li>Marcello</li>
-                                                <li>#B00125</li>
-                                                <li>$2500</li>
-                                                <li>25 Sold</li>
-                                                <li class="sale_vie_list">
-                                                    <div class="view_salebx">
-                                                        <a href="View_breeder_pro_info.html">View Profile</a>
-                                                        <a href="View_breeder.html">View Sales</a>
-                                                    </div>
-                                                </li>
-                                                <li class="deactivate_list">
-                                                    <div class="deactivatebx">
-                                                        <a href="#" data-toggle="modal" data-target="#exampleModalCenter">Deactivate</a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
 
-
+                                            </li>
+                                        <?php
+                                            }
+                                        ?>
                                     </ul>
-
-
-
-
                                 </ul>
 
                             </div>

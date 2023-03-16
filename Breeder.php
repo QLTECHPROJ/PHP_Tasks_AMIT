@@ -37,7 +37,9 @@
 </head>
 
 <body>
+<?php
 
+?>
     <div class="site-main">
 
         <noscript>
@@ -109,16 +111,24 @@
                                         </ul>
                                     </li>
                                     <ul class="htnkh">
+                                        <?php
+                                            // LOOP TILL END OF DATA
+                                            $data = $_GET['data'];
+                                            while($rows=$data)
+                                            {
+                                        ?>
                                         <li class="inner_data frdtgh">
+                                            <!-- FETCHING DATA FROM EACH
+                                                ROW OF EVERY COLUMN -->
                                             <ul>
-                                                <li>Aaron Ipsum</li>
-                                                <li>#B001</li>
-                                                <li>$2500</li>
-                                                <li>25 Sold</li>
-                                                <li class="sale_vie_list">
+                                            <li><?php echo $rows['Breedername'];?></li>
+                                            <li><?php echo $rows['BreederCode'];?></li>
+                                            <li><?php echo $rows['totalearning'];?></li>
+                                            <li><?php echo $rows['totalsales'];?></li>
+                                            <li class="sale_vie_list">
                                                     <div class="view_salebx">
-                                                        <a href="View_breeder_pro_info.html">View Profile</a>
-                                                        <a href="View_breeder.html">View Sales</a>
+                                                        <a href="View_breeder_pro_info.php">View Profile</a>
+                                                        <a href="View_breeder.php">View Sales</a>
                                                     </div>
                                                 </li>
                                                 <li class="deactivate_list">
@@ -127,66 +137,11 @@
                                                     </div>
                                                 </li>
                                             </ul>
-                                        </li>
-                                        <li class="inner_data frdtgh">
-                                            <ul>
-                                                <li>Alexei</li>
-                                                <li>#B002</li>
-                                                <li>$2500</li>
-                                                <li>25 Sold</li>
-                                                <li class="sale_vie_list">
-                                                    <div class="view_salebx">
-                                                        <a href="View_breeder_pro_info.html">View Profile</a>
-                                                        <a href="View_breeder.html">View Sales</a>
-                                                    </div>
-                                                </li>
-                                                <li class="deactivate_list">
-                                                    <div class="deactivatebx">
-                                                        <a href="#" data-toggle="modal" data-target="#exampleModalCenter">Deactivate</a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="inner_data frdtgh">
-                                            <ul>
-                                                <li>Diarmuid</li>
-                                                <li>#B0030</li>
-                                                <li>$2500</li>
-                                                <li>25 Sold</li>
-                                                <li class="sale_vie_list">
-                                                    <div class="view_salebx">
-                                                        <a href="View_breeder_pro_info.html">View Profile</a>
-                                                        <a href="View_breeder.html">View Sales</a>
-                                                    </div>
-                                                </li>
-                                                <li class="deactivate_list">
-                                                    <div class="deactivatebx">
-                                                        <a href="#" data-toggle="modal" data-target="#exampleModalCenter">Deactivate</a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="inner_data frdtgh">
-                                            <ul>
-                                                <li>Marcello</li>
-                                                <li>#B00125</li>
-                                                <li>$2500</li>
-                                                <li>25 Sold</li>
-                                                <li class="sale_vie_list">
-                                                    <div class="view_salebx">
-                                                        <a href="View_breeder_pro_info.html">View Profile</a>
-                                                        <a href="View_breeder.html">View Sales</a>
-                                                    </div>
-                                                </li>
-                                                <li class="deactivate_list">
-                                                    <div class="deactivatebx">
-                                                        <a href="#" data-toggle="modal" data-target="#exampleModalCenter">Deactivate</a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
 
-
+                                            </li>
+                                        <?php
+                                            }
+                                        ?>
                                     </ul>
 
                                    
