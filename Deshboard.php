@@ -1,3 +1,10 @@
+<?php
+ session_start();
+ if(!isset($_SESSION['username'])){
+    header(Location:"index.php");
+ }
+
+?>
 <!DOCTYPE html>
 
 <html lang="en-US" class="no-js no-svg">
@@ -124,7 +131,7 @@ $mysqli->close();
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="bck_title">
-                            <p><span>Welcome Back!</span>Admin</p>
+                            <p><span>Welcome Back!</span><?php echo $_SESSION['username'];  ?></p>
                         </div>
                     </div>
                 </div>

@@ -33,39 +33,66 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js"
         crossorigin="anonymous"></script>
     <title>Sign In | Padigree</title>
-
+<style>
+.error{
+    position: relative;
+    font-size:14px;
+    color:#FF4081 !important;
+    
+}
+</style>
 </head>
 
 <body>
+
 <?php
-    require('db.php');
+include 'db.php';
+
+if(isset($_POST['submit'])){
+    $username = mysqli_real_escape_string( $con, $_POST['username']);
+    $email = mysqli_real_escape_string( $con, $_POST['email']);
+    $mobnumber = mysqli_real_escape_string( $con, $_POST['mobnumber']);
+    $password = mysqli_real_escape_string( $con, $_POST['password']);
+    $cpassword = mysqli_real_escape_string( $con, $_POST['cpassword']);
     
-    if (isset($_REQUEST['username'])) {
-       
-        $username = stripslashes($_REQUEST['username']);
+    $pass= password_hash($password, PASSWORD_BCRYPT);
+    $cpass= password_hash($cpassword, PASSWORD_BCRYPT);
+
+    $emailquery= "select * from user_registration where email='$email'";
+    $query= mysqli_query($con, $emailquery);
+    $emailcount= mysqli_num_rows($query);
+    if($emailcount>0){
+        ?>
+        <script>
+            alert('email  already exit')
+        </script>
+        <?php
         
-        $username = mysqli_real_escape_string($con, $username);
-        $email    = stripslashes($_REQUEST['email']);
-        $email    = mysqli_real_escape_string($con, $email);
-        $password = stripslashes($_REQUEST['password']);
-        $password = mysqli_real_escape_string($con, $password);
-        $create_datetime = date("Y-m-d H:i:s");
-        $query    = "INSERT into `users` (username, password, email, create_datetime)
-                     VALUES ('$username', '" . md5($password) . "', '$email', '$create_datetime')";
-        $result   = mysqli_query($con, $query);
-        if ($result) {
-            echo "<div class='form'>
-                  <h3>You are registered successfully.</h3><br/>
-                  <p class='link'>Click here to <a href='index.php'>Login</a></p>
-                  </div>";
-        } else {
-            echo "<div class='form'>
-                  <h3>Required fields are missing.</h3><br/>
-                  <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
-                  </div>";
+    }else{
+        if($password === $cpassword){
+            $insertquery= " insert into user_registration( username,email,mobnumber,password,cpassword) values('$username','$email','$mobnumber','$pass','$cpass')";
+            $iquery= mysqli_query($con,$insertquery);
+            if($iquery){
+                header("Location: index.php");
+            }else{
+                ?>
+                <script>
+                    alert('Db connection  error seccesful')
+                </script>
+                <?php
+            }
+        }else{
+            ?>
+                <script>
+                    alert('password not match')
+                </script>
+                <?php
         }
-    } else {
+    }
+}
+
 ?>
+
      <section class="Login_sec" id="hbanner_sec">
 
 <div class="login_cntbxmain">
@@ -94,20 +121,28 @@
                             <h1>Welcome to Pedigree</h1>
                             <h3>Create New account</h3>
                         </div>
-                        <form class="form" action="" method="post">
+                        <form class="form login-form" action="" method="post" id="registration-form" autocomplete="off">
                             <div class="lg-mb-3 mb-2 email_bx">
                                 <label for="exampleInputEmail1" class="form-label">User Name</label>
-                                <input type="text" class="form-control" name="username" placeholder="User Name" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <input type="text" class="form-control" id="" name="username" placeholder="User Name" autocomplete="off">
                             </div>
                             <div class="lg-mb-3 mb-2 email_bx">
                                 <label for="exampleInputEmail1"  class="form-label">Email address</label>
-                                <input type="email" class="form-control"  name="email" placeholder="John.snow@gmail.com" id="exampleInputEmail1"
+                                <input type="email" class="form-control" id="email"  name="email" placeholder="John.snow@gmail.com" 
+                                    aria-describedby="emailHelp" >
+                            </div>
+                            <div class="lg-mb-3 mb-2 email_bx">
+                                <label for="exampleInputEmail1" class="form-label">Mob Number</label>
+                                <input type="text" class="form-control" id="mobnumber" name="mobnumber" placeholder="Mobile Number" 
                                     aria-describedby="emailHelp">
                             </div>
                             <div class="lg-mb-3 mb-2">
                                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" placeholder="**********" id="exampleInputPassword1">
+                                <input type="password" name="password" id="password" class="form-control" placeholder="**********" >
+                            </div>
+                            <div class="lg-mb-3 mb-2">
+                                <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+                                <input type="password" name="cpassword" id="password-confirm" class="form-control" placeholder="**********">
                             </div>
                             <div class="frm_chck_main">
                                 <div class="mb-3 form-check chck_bx">
@@ -134,17 +169,61 @@
 </div>
 
 </section><!--Login_sec-->
-<?php
-    }
-?>
+
 
     <script src="js/jquery.min.js"></script>
 
     <script src="js/bootstrap.min.js"></script>
 
     <script src="js/general.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script>
+$(".login-form").validate({
+  rules: {
+    username: {
+      required: true,
+     
+    },     
+    email: {
+      required: true,
+      email:true
+    },
+    mobnumber: {
+      required: true,
+      minlength:10
+    },
+    password: {
+      required: true,
+      minlength: 5
+    },
+    cpassword: {
+      required: true,
+      minlength: 5,
+      equalTo: "#password"
+    }
+  },
+  //For custom messages
+  messages: {
+    username:{
+      required: "Enter a username",
+     
+    }
+  },
+  errorElement : 'div',
+  errorPlacement: function(error, element) {
+    var placement = $(element).data('error');
+    if (placement) {
+      $(placement).append(error)
+    } else {
+      error.insertAfter(element);
+    }
+  }
+});
+    </script>
 
     </div>
+
 
 </body>
 

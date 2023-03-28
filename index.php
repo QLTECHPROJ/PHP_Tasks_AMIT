@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en-US" class="no-js no-svg">
@@ -37,35 +38,41 @@
 </head>
 
 <body>
+    <?php
+    include 'login.php';
+    ?>
+<!-- <?php
+    // include 'db.php';
+    // if(isset(($_POST['submit']))){
+    //     $email= $_POST['email'];
+    //     $password= $_POST['password'];
+
+    //     $emailsearch= "select * from user_registration where email='$email'";
+    //     $query= mysqli_query($con, $emailsearch);
+    //     $emailcheck= mysqli_num_rows($query);
+    //     if($emailcheck){
+    //         $emailpass= mysqli_fetch_assoc($query);
+    //         $dbpass= $emailpass['password'];
+    //         $_SERVER['username']= $emailpass['username'];
+    //         $passdequode= password_verify($password, $dbpass);
+    //         if($passdequode){
+                
+    //             header('Location: Deshboard.php');
+                
+                
+    //         }else{
+    //             echo 'invalid password';
+    //         }
+    //     }else{
+    //         echo 'plaese enter valid username or email';
+    //     }
+    // }
+
+
+   ?> -->
 
     <div class="site-main">
-
-    <?php
-    require('db.php');
-    session_start();
-   
-    if (isset($_POST['username'])) {
-        $username = stripslashes($_REQUEST['username']);    
-        $username = mysqli_real_escape_string($con, $username);
-        $password = stripslashes($_REQUEST['password']);
-        $password = mysqli_real_escape_string($con, $password);
-        
-        $query    = "SELECT * FROM `users` WHERE username='$username'
-                     AND password='" . md5($password) . "'";
-        $result = mysqli_query($con, $query) or die(mysql_error());
-        $rows = mysqli_num_rows($result);
-        if ($rows == 1) {
-            $_SESSION['username'] = $username;
-            
-            header("Location: Admin_Deshboard.php");
-        } else {
-            echo "<div class='form'>
-                  <h3>Incorrect Username/password.</h3><br/>
-                  <p class='link'>Click here to <a href='index.php'>Login</a> again.</p>
-                  </div>";
-        }
-    } else {
-?>
+    
    <section class="Login_sec" id="hbanner_sec">
 
 <div class="login_cntbxmain">
@@ -94,10 +101,10 @@
                             <h1>Welcome to Pedigree</h1>
                             <h3>Login to access your account</h3>
                         </div>
-                        <form class="form" method="post" name="login">
+                        <form class="form" method="post" name="login" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>">
                             <div class="lg-mb-3 mb-2 email_bx">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="text" name="username" class="form-control" placeholder="John.snow@gmail.com" id="exampleInputEmail1"
+                                <input type="text" name="email" class="form-control" placeholder="John.snow@gmail.com" id="exampleInputEmail1"
                                     aria-describedby="emailHelp">
                             </div>
                             <div class="lg-mb-3 mb-2">
@@ -118,7 +125,7 @@
                                 
                             </div>
                             <div class="newacc text-center">
-                                    <a href="registration2.php">Create New Account</a>
+                                    <a href="user_registration.php">Create New Account</a>
                             </div>
                         </form>
                     </div>
@@ -132,9 +139,7 @@
 </div>
 
 </section><!--Login_sec-->
-<?php
-    }
-?>
+
         <!--header section starts-->
 
 
